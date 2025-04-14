@@ -66,6 +66,22 @@ export default function Home() {
       <p className='text-sm text-gray-300 mt-2'>
         ※ 클릭 시 광고 페이지가 새 창에서 열립니다.
       </p>
+      {/* 광고 삽입 영역 */}
+      <div className='mt-6 w-full max-w-lg'>
+        <ins
+          className='adsbygoogle'
+          style={{ display: 'block' }}
+          data-ad-client='ca-pub-1217533439838380'
+          data-ad-slot='8122018359'
+          data-ad-format='auto'
+          data-full-width-responsive='true'
+        ></ins>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
+          }}
+        />
+      </div>
     </div>
   );
 }
