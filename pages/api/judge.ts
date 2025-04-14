@@ -74,14 +74,17 @@ export default async function handler(
 
   try {
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4-turbo',
+      model: 'gpt-4',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.7,
     });
 
+    console.log('🟢 GPT 응답 완료');
+
     const content = completion.choices[0].message.content;
 
-    // 🔥 Firestore에 결과 저장
+    console.log('✅ Firestore 저장 시작');
+
     const docRef = await addDoc(collection(db, 'results'), {
       vs1,
       vs2,
@@ -89,6 +92,8 @@ export default async function handler(
       result: content,
       createdAt: Timestamp.now(),
     });
+
+    console.log('✅ 저장 완료: ', docRef.id);
 
     // 고유 ID도 응답에 포함
     res.status(200).json({ result: content, id: docRef.id });
